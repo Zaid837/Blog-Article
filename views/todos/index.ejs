@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Task Sheet</title>
+</head>
+<body>
+    <nav class="nav bg-dark mb-4">
+        <div class="container">
+            <a class="nav-link text-white" href="#"><h1>Todo list</h1></a>
+        </div>
+    </nav>
+    <div class="container">
+        <a href="/todos/new" class="btn btn-success">New Todo</a>
+
+        <% todo.forEach(todo => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="todo-title"><%= todo.title %></h4>
+                    <div class="todo-subtitle mb-2">
+                        <%= todo.created_at.toLocaleDateString() %>
+                    </div>
+                    <div class="card-text mb-2"><%= todo.description %></div>
+                    <a href="/todos/<%= todo.slug %> " class="btn btn-primary">View task</a>
+                    <a href="/todos/edit/<%= todo.id %> " class="btn btn-info">Edit</a>
+                    <form action="/todos/<%= todo.id %>?_method=DELETE " method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">
+                        Delete
+                    </button>
+                </form>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
